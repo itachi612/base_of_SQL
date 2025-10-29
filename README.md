@@ -1,6 +1,6 @@
 # SQL and Pandas
 
-Summary: Today we will help you acquire skills with SQL.
+Summary: Today you will acquire skills with SQL.
 
 💡 [Tap here](https://new.oprosso.net/p/4cb31ec3f47a4596bc758ea1861fb624) **to leave your feedback on the project**. It's anonymous and will help our team make your educational experience better. We recommend completing the survey immediately after the project.
 
@@ -21,30 +21,30 @@ Summary: Today we will help you acquire skills with SQL.
 7. [Chapter VII](#chapter-vii) \
     7.1. [Exercise 03. Aggregations](#exercise-03-aggregations)
 8. [Chapter VIII](#chapter-viii) \
-    8.1. [Exercise 04. A/B-testing](#exercise-04-a/b-testing)
+    8.1. [Exercise 04. A/B testing](#exercise-04-a/b-testing)
     
    
 ## Chapter I
 
 ### Foreword
 
-Is it "Sequel" or "Ess Kyew Ell"? How do you pronounce SQL correctly? Some interviewers reject interviewees if they don't pronounce it the "right" way. Apparently, knowing the correct pronunciation is really important.
+Is it "Sequel" or "Ess Kyew Ell"? How do you correctly pronounce SQL? Some interviewers reject interviewees if they don't pronounce it correctly. Apparently, knowing the correct pronunciation is important.
 
-SQL was originally spelled SEQUEL (Structured English Query Language), but it was later discovered that this was the registered trademark of an aircraft company. The authors had to change it. Since then, it has been SQL (Structured Query Language). One of the authors [was asked](http://patorjk.com/blog/2012/01/26/pronouncing-sql-s-q-l-or-sequel/) which pronunciation is correct. He answered:
+Originally, SQL was spelled SEQUEL (Structured English Query Language), but it was later discovered that this was the registered trademark of an aircraft company, so the spelling was changed. The authors had to change it. Since then, it has been SQL (Structured Query Language). One of the authors [was asked](http://patorjk.com/blog/2012/01/26/pronouncing-sql-s-q-l-or-sequel/) which pronunciation is correct. He answered:
 
 ```
-Since the language was originally named SEQUEL, many people continued to pronounce the name that way after it was shortened to SQL. Both pronunciations are widely used and recognized. As for which is more "official", I guess the authority would be the ISO standard, which is spelled (and presumably pronounced) "S-Q-L".
+"Since the language was originally named SEQUEL, many people continued to pronounce the name that way after it was shortened to SQL. Both pronunciations are widely used and recognized. As for which is more 'official', I guess the authority would be the ISO standard, which is spelled (and presumably pronounced) 'S-Q-L'.
 
-Thanks for your interest!
+Thanks for your interest!"
 
 — Don Chamberlin
 ```
 
-One of the authors said that you can use either method. "S-Q-L" is supposedly the more official way of doing it. What do other "authority figures" think?
+One of the authors said that either method can be used. "S-Q-L" is supposedly the more official method. What do other "authority" figures think?
 
-Apparently, the official pronunciation of "MySQL" is "My Ess Kyew Ell" (not "my sequel"). However, the official Oracle documentation says that the correct pronunciation is "Sequel."
+Apparently, the official pronunciation of "MySQL" is "My Ess Kyew Ell" (not "My Sequel"). However, the official Oracle documentation says that the correct pronunciation is "Sequel".
 
-Before diving into the exercises, you must make an important choice: Are you going to pronounce it "Sequel" or "S-Q-L"? More informal or more formal? Where does your heart lie?
+Before diving into the exercises, you must make an important choice: Will you pronounce it "Sequel" or "S-Q-L"? Would you prefer a more informal or formal approach? Where does your heart lie?
 
 ## Chapter II
 
@@ -83,21 +83,21 @@ Before diving into the exercises, you must make an important choice: Are you goi
 - Files to turn in: `ex00_first_select.ipynb`.
 - Allowed functions: `import pandas as pd`, `import sqlite3`.
 
-Having only Python in your toolbox can sometimes be limiting. Remember during the first day of Piscine when you worked with command-line tools because they are more efficient for certain tasks? Today, you will work with SQL. Why might that be useful to you? Sometimes your data might not be stored in convenient CSV or JSON files, but rather in a database, and you have to extract it somehow. SQL can also be used with Apache Spark and Hive, tools used for processing big data, but with Hive, it's called HQL.
+Having only Python in your toolbox can be limiting. Do you remember the first day of Bootcamp, when you used command-line tools because they're more efficient for certain tasks? Today, you will work with SQL. Why might that be useful to you? Sometimes, your data might not be stored in CSV or JSON files, but rather in a database. In that case, you would need to extract the data somehow. SQL can be used with Apache Spark and Hive, which are tools for processing big data. With Hive, it's called HQL.
 
-Download the [the SQLite database](https://drive.google.com/open?id=1zQ8AR2Ry3ajzB3UZO1Sfk3xtDJlzQF2M). Throughout the day, you will work with different tables from the database using Pandas. They are all connected and refer to the same project. The dataset is real and comes from an educational company. The company has its own platform where students can check if their solution is correct and receive other feedback. The table checker stores logs of which labs and when users checked them.
+Download [the SQLite database](https://drive.google.com/open?id=1zQ8AR2Ry3ajzB3UZO1Sfk3xtDJlzQF2M). Throughout the day, you will work with different tables from the database using Pandas. They are all connected and refer to the same project. The dataset is real and comes from an educational company. The company has its own platform where students can check if their solution is correct and receive other feedback. The table checker stores logs of which labs users checked and when.
 
 ![lada](misc/images/lada.png)
 
-The company created a new page on the platform called Newsfeed where these logs are visible to all students in the program. Logs of page visits are stored in another table, pageviews. The hypothesis was that the page would create peer pressure, prompting students to start working on the labs earlier. This could be beneficial because they could complete more iterations and experiment with different approaches. In this series of exercises, you will determine whether this hypothesis is correct.
+The company created a new page on the platform called "Newsfeed", where these logs are visible to all students in the program. Logs of page visits are stored in a separate table called "pageviews". The hypothesis was that the page would create peer pressure and prompt students to start working on the labs earlier. This could be beneficial because students could complete more iterations and experiment with different approaches. In this series of exercises, you will determine whether this hypothesis is correct.
 
 ![lenta](misc/images/lenta.png)
 
-But first, let's start with something simple. For this exercise, you need to retrieve filtered data from a table in the database. Why is it important to filter the data in the query but not afterward in Pandas? Because tables can be enormous. If you try to retrieve the entire table, you won't be able to process it. Always keep this in mind.
+But first, let's start with something simple. For this exercise, you need to retrieve filtered data from a database table. Why is it important to filter the data in the query but not in Pandas afterward? Because tables can be enormous. If you try to retrieve the entire table, you won't be able to process it. Always keep this in mind.
 
-The first method of filtering is to choose only the columns you need.
+First, choose only the columns you need.
 
-Second, choose the rows you really need.
+Second, select the rows you need.
 
 In more detail:
 
@@ -105,7 +105,7 @@ In more detail:
 2. Create a connection to the database using the sqlite3 library.
 3. Get the schema of the `pageviews` table using `pd.io.sql.read_sql()` and the query `"PRAGMA table_info(pageviews);"`.
 4. Get only the first ten rows of the `pageviews` table to see what the table looks like.
-5. Get the subtable using one query where:
+5. Use one query to get the subtable where:
    - Only "uid" and "datetime" are used.
    - Only user data (`user_*`), not admin data, is used.
    - It is sorted by "uid" in ascending order.
@@ -122,7 +122,7 @@ In more detail:
 - Files to turn in: `ex01_subquery.ipynb`.
 - Allowed functions: `import pandas as pd`, `import sqlite3`.
 
-Okay, let's make something more complicated. Have you heard of subqueries? It's like a query inside a query. How could they be useful to you? Generally, you might want to perform aggregations on a select that you had previously made. Note, however, that nested queries run first, followed by the main query.
+Okay, let's try something more complicated. Have you heard of subqueries? They're like queries inside queries. How could they be useful to you? Typically, you might want to perform aggregations on a select that you had previously made. Note, however, that nested queries run first, followed by the main query.
 
 Here's what you need to do:
 
@@ -132,8 +132,8 @@ Here's what you need to do:
 4. Count how many rows satisfy the following conditions using one query with any number of subqueries.
    - Count the rows from the `pageviews` table, but only those from the `checker` table with:
      - `status = 'ready'`, we do not want to analyze logs that are
-    status checking.
-     - `numTrials = 1`, we only want to analyze the first commits because they tell us when a student started working on a lab.
+    status checking;
+     - `numTrials = 1`, we only want to analyze the first commits because they tell us when a student started working on a lab;
      - "labnames" should be from the list: `laba04`, `laba04s`, `laba05`, `laba06`, `laba06s`, and `project1`. Only these were active during the experiment.
    - Store the checkers in the dataframe with the column "cnt".
 5. Close the connection.
@@ -146,9 +146,9 @@ Here's what you need to do:
 - Files to turn in: `ex02_joins.ipynb`.
 - Allowed functions: `import pandas as pd`, `import sqlite3`.
 
-In this exercise, you will create a so-called datamart. A datamart is a table used for analytics. It is usually created by joining different tables together. For this exercise, we will collect various pieces of data about our users, such as when they made their first commits and when they visited the newsfeed for the first time. This will help us analyze the data later.
+In this exercise, you will create a so-called datamart. A datamart is a table used for analytics. It is typically formed by combining different tables. For this exercise, we will collect various pieces of user data, such as their first commit date and their first visit to the newsfeed. This will help us analyze the data later.
 
-Read the full task to see what you need to do in this exercise:
+Read the full task description to see what you need to do:
 
 1. Create a connection to the database using the `sqlite3` library.
 2. Create a new table called `datamart` in the database by joining the tables `pageviews` and `checker` using only one query.
@@ -167,7 +167,7 @@ Read the full task to see what you need to do in this exercise:
    - Save both tables in the database. You will use them in the next exercises.
 4. Close the connection.
 
-A small piece of advice: do this step by step, from simple to more complex. This will help you debug your queries.
+_A small piece of advice: do this step by step, from simple to more complex. This will help you debug your queries._
 
 ## Chapter VII
 
@@ -177,7 +177,7 @@ A small piece of advice: do this step by step, from simple to more complex. This
 - Files to turn in: `ex03_aggs.ipynb`.
 - Allowed functions: `import pandas as pd`, `import sqlite3`.
 
-Our previous work was merely data preparation. We didn't gain any insights from the data. It's time to change that. Remember our hypothesis that users would start working on labs earlier if they saw the newsfeed? The key metric for us is the difference between when a user starts working on a lab (their first commit) and the lab's deadline.
+Our previous work was merely data preparation. We didn't gain any insights from it. It's time to change that. Do you remember our hypothesis that users would start working on labs earlier if they saw the newsfeed? The key metric for us is the time between when a user starts working on a lab (their first commit) and the lab's deadline.
 
 For this exercise, you need to:
 
@@ -203,25 +203,25 @@ For this exercise, you need to:
 
 ## Chapter VIII
 
-### Exercise 04. A/B-testing
+### Exercise 04. A/B testing
 
 - Turn-in directory: `ex04/`.
 - Files to turn in: `ex04_ab-test.ipynb`.
 - Allowed functions: `import pandas as pd`, `import sqlite3`.
 
-So, let's finally find out if the Newsfeed affected the students' behavior. Did they start working on the labs earlier? Remember, we have two tables prepared in the database: test and control. We are going to conduct an A/B test of sorts. First, we need to calculate the difference between the first commit and the deadline before and after they visited the page for the first time. We need to do the same for the control group.
+So, let's finally find out if the newsfeed affected the students' behavior. Did they start working on the labs earlier? Remember, we have two tables prepared in the database: a test group and a control group. We are going to conduct an A/B test. First, we need to calculate the difference between the first commit and the deadline, both before and after the students visited the page for the first time. We need to do the same for the control group.
 
-In other words, each user in the test group has their own timestamp for their first visit to the Newsfeed. We want to calculate the average delta (first commit — deadline) before and after that timestamp. We will do the same for users in the control group. You might say, "But they did not visit the newsfeed at all". That is correct. Earlier, we decided to use the average timestamp of the first view from the test group for the control group users.
+In other words, each user in the test group has their own timestamp for their first visit to the newsfeed. We want to calculate the average delta (first commit minus deadline) before and after that timestamp. We will do the same for users in the control group. You might say, "But they did not visit the newsfeed at all". That is correct. Earlier, we decided to use the average timestamp of the first view from the test group for control group users.
 
-If the delta before the first Newsfeed visit is significantly different compared to the delta afterward in the test group and we don't see the same effect in the control group, then creating the page was a great idea. We can roll it out to the whole group.
+If the delta before the first newsfeed visit is significantly different compared to the delta afterward in the test group, but we don't see the same effect in the control group, then creating the page was a great idea. We can roll it out to the whole group.
 
 In more detail:
 
-1. Create a connection to the database using the `sqlite3` library.
-2. Using only one query for each group, create two dataframes: `test_results` and `control_results`, with the columns "time" and "avg_diff", and only two rows.
-   - "time" should have the values after and before.
-   - "avg_diff" should contain the average delta for all users for the time period before and after their first visit to the page.
+1. Use the `sqlite3` library to create a connection to the database.
+2. Using one query per group, create two dataframes, `test_results` and `control_results`, with the columns "time" and "avg_diff" and two rows.
+   - The "time" column should contain the values "after" and "before".
+   - The "avg_diff" should contain the average delta for all users for the time period before and after their first visit to the page.
    - Only take into account users with observations before and after.
 3. We are still not using the lab `project1`.
 4. Close the connection.
-5. Have the answer: Did the hypothesis turn out to be true, and does the page affect students' behavior?
+5. Have the answer ready: "Did the hypothesis turn out to be true, and does the page affect students' behavior?"
